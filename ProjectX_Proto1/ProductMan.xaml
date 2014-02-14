@@ -8,7 +8,7 @@
         <BitmapImage x:Key="UserImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/user_32xLG.png"/>
         <BitmapImage x:Key="SettingsImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/gear_32xLG.png"/>
         <BitmapImage x:Key="defaultUser" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/default.jpg"/>
-        <Popup StaysOpen="False" Width="200" Height="100" x:Key="myPopup" Placement="Mouse">
+        <Popup x:Key="myPopup" StaysOpen="False" Width="200" Height="100" PlacementTarget="{Binding ElementName=pnlProfile}" Placement="Bottom" PopupAnimation="Scroll">
             <Border BorderBrush="Black" BorderThickness="1">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
@@ -26,7 +26,6 @@
                 </Grid>
             </Border>
         </Popup>
-
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -77,13 +76,14 @@
                 </StackPanel>
                 <StackPanel Grid.Column="6" HorizontalAlignment="Stretch"/>
                 <StackPanel Grid.Column="7" Orientation="Horizontal" x:Name="pnlSettings" Style="{DynamicResource HeaderControls}"  Margin="0,0,-2,0">
-                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center" FontFamily="FontAwesome"/>
+                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Right" x:Name="pnlProfile" Style="{DynamicResource HeaderControls}" MouseLeftButtonUp="pnlProfile_Click">
                     <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"/>
                     <Border BorderThickness="1,1,4,1" BorderBrush="{DynamicResource ProfileHighlight}" Height="26" Margin="0,0,4,0">
                         <Image Source="{DynamicResource defaultUser}" Height="24" Width="24"/>
                     </Border>
+                    
                 </StackPanel>
             </Grid>
         </StackPanel>
