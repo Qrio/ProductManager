@@ -1,23 +1,43 @@
-﻿<Window x:Class="ProjectX_Proto2.ProductMan"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Properties="clr-namespace:ProjectX_Proto2.Properties" x:Class="ProjectX_Proto2.ProductMan"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Product Manager " WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}">
     <Window.Resources>
-        <BitmapImage x:Key="UserImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/user_32xLG.png"></BitmapImage>
-        <BitmapImage x:Key="SettingsImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/gear_32xLG.png"></BitmapImage>
-        <BitmapImage x:Key="defaultUser" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/default.jpg"></BitmapImage>
+        <BitmapImage x:Key="UserImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/user_32xLG.png"/>
+        <BitmapImage x:Key="SettingsImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/gear_32xLG.png"/>
+        <BitmapImage x:Key="defaultUser" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/default.jpg"/>
+        <Popup StaysOpen="False" Width="200" Height="100" x:Key="myPopup" Placement="Mouse">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" 
+        				x:Name="PopupTxt"
+        				TextAlignment="Center" 
+        				VerticalAlignment="Center"><Run Text="I'm A Popup!!"/></TextBlock>
+                </Grid>
+            </Border>
+        </Popup>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="1"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="1"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Height="40" Background="{DynamicResource WindowAccentBrush}" VerticalAlignment="Top" Width="Auto">
             <Grid HorizontalAlignment="Stretch">
@@ -43,31 +63,31 @@
                     <ColumnDefinition Width="15"/>
                     <!--Sign in space... Column 9-->
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" Name="pnlTitle" Style="{DynamicResource HeaderControls}">
-                    <Label Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol"></Label>
-                    <Label Style="{DynamicResource Header1}" Content="Purchase Manager" VerticalAlignment="Stretch"></Label>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" x:Name="pnlTitle" Style="{DynamicResource HeaderControls}">
+                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF07A;" FontSize="28"/>
+                    <Label Style="{DynamicResource Header1}" Content="Purchase Manager" VerticalAlignment="Stretch"/>
                 </StackPanel>
-                <StackPanel Background="White" Grid.Column="2"></StackPanel>
-                <StackPanel Grid.Column="3" VerticalAlignment="Stretch" Name="pnlMoreProducts"  Style="{DynamicResource HeaderControls}">
-                    <Label Grid.Column="3" Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Bottom" Margin="0,10,0,0"></Label>
+                <StackPanel Background="White" Grid.Column="2"/>
+                <StackPanel Grid.Column="3" VerticalAlignment="Stretch" x:Name="pnlMoreProducts"  Style="{DynamicResource HeaderControls}">
+                    <Label Grid.Column="3" Style="{DynamicResource Header1}" Content="&#xE011;" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Bottom" Margin="0,10,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Column="5" Orientation="Horizontal" x:Name="pnlNew"  Style="{DynamicResource HeaderControls}">
-                    <Label Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Center"></Label>
-                    <Label Style="{DynamicResource Header1}" Content="New" VerticalAlignment="Center" FontSize="16"></Label>
+                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF055;" FontSize="22" VerticalAlignment="Center"/>
+                    <Label Style="{DynamicResource Header1}" Content="New" VerticalAlignment="Center" FontSize="16"/>
                 </StackPanel>
-                <StackPanel Grid.Column="6" HorizontalAlignment="Stretch"></StackPanel>
+                <StackPanel Grid.Column="6" HorizontalAlignment="Stretch"/>
                 <StackPanel Grid.Column="7" Orientation="Horizontal" x:Name="pnlSettings" Style="{DynamicResource HeaderControls}"  Margin="0,0,-2,0">
-                    <Label Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol" FontSize="18" VerticalAlignment="Center"></Label>
+                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center" FontFamily="FontAwesome"/>
                 </StackPanel>
-                <StackPanel Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Right" Name="pnlProfile" Style="{DynamicResource HeaderControls}">
-                    <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"></Label>
+                <StackPanel Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Right" x:Name="pnlProfile" Style="{DynamicResource HeaderControls}" MouseLeftButtonUp="pnlProfile_Click">
+                    <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"/>
                     <Border BorderThickness="1,1,4,1" BorderBrush="{DynamicResource ProfileHighlight}" Height="26" Margin="0,0,4,0">
-                        <Image Source="{DynamicResource defaultUser}" Height="24" Width="24"></Image>
+                        <Image Source="{DynamicResource defaultUser}" Height="24" Width="24"/>
                     </Border>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="1" Background="{DynamicResource ProfileHighlight}"></StackPanel>
+        <StackPanel Grid.Row="1" Background="{DynamicResource ProfileHighlight}"/>
         <StackPanel Grid.Row="2" Background="{DynamicResource WindowBackgroundBrush}" Orientation="Horizontal">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -86,51 +106,52 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                     </Grid>
-                    <!--Show the treeview with All Purchases-->
-                    <TextBlock Width="223" Grid.Row="0"></TextBlock>
+                    <TextBlock Width="225" Grid.Row="0"/>
                     <Button Style="{DynamicResource MenuButton}" Content="Purchase History" Grid.Row="1"/>
-                    <Button Style="{DynamicResource MenuButton}" Content="Vendors"></Button>
-                    <Button Style="{DynamicResource MenuButton}" Content="Items &amp; Prices"></Button>
-                    <TextBlock Width="223" Grid.Row="4"></TextBlock>
+                    <Button Style="{DynamicResource MenuButton}" Content="Vendors" Grid.Row="2"/>
+                    <Button Style="{DynamicResource MenuButton}" Content="Items &amp; Prices" Grid.Row="3"/>
+                    <TextBlock Width="223" Grid.Row="4"/>
                     <Border Grid.Row="5" BorderThickness="1,3,1,1" BorderBrush="{DynamicResource ProfileHighlight}" Padding="4,2,4,2" Margin="2,2,2,2">
                         <StackPanel Orientation="Vertical">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="176"/>
                                     <ColumnDefinition Width="1"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal" Style="{DynamicResource HeaderControls}" ToolTip="Click to open notification center">
-                                    <Label Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Center" Margin="0,-6,0,0"></Label>
-                                    <Label Style="{DynamicResource Header1}" Content="Alerts &amp; Notifications" VerticalAlignment="Center" FontSize="15"></Label>
+                                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF075;" FontSize="16" VerticalAlignment="Center" Margin="0,-2,0,0">
+                                        <Label.DataContext>
+                                            <Properties:Resources/>
+                                        </Label.DataContext>
+                                    </Label>
+                                    <Label Style="{DynamicResource Header1}" Content="Alerts &amp; Notifications" VerticalAlignment="Center" FontSize="15" Margin="0,0,8,0"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal" Style="{DynamicResource HeaderControls}" ToolTip="Clear all notifications">
-                                    <Label Style="{DynamicResource Header1}" Content="" FontFamily="Segoe UI Symbol" FontSize="28" VerticalAlignment="Center" Margin="-5,-8,-5,-5"></Label>
+                                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF014;" FontSize="18" VerticalAlignment="Center" Margin="0,0,0,0"/>
                                 </StackPanel>
-                            </Grid>                            
-                            <StackPanel Height="1" Background="{DynamicResource WindowAccentBrush}"></StackPanel>
+                            </Grid>
+                            <StackPanel Height="1" Background="{DynamicResource WindowAccentBrush}"/>
                             <StackPanel>
                                 <ListView>
-                                    <ListViewItem Content="> Low stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content="> Low stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content="> Low stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content="> Low stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content="> Dead stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content="> Dead stock on Item 1"></ListViewItem>
-                                    <ListViewItem Content=">> More alerts..."></ListViewItem>
+                                    <ListViewItem Content="&gt; Low stock on Item 1"/>
+                                    <ListViewItem Content="&gt; Low stock on Item 1"/>
+                                    <ListViewItem Content="&gt; Low stock on Item 1"/>
+                                    <ListViewItem Content="&gt; Low stock on Item 1"/>
+                                    <ListViewItem Content="&gt; Dead stock on Item 1"/>
+                                    <ListViewItem Content="&gt; Dead stock on Item 1"/>
+                                    <ListViewItem Content="&gt;&gt; More alerts..."/>
                                 </ListView>
                             </StackPanel>
-                        </StackPanel>                    
-                    </Border>                    
+                        </StackPanel>
+                    </Border>
                     <!--Split the second part of the panel to show the stock information-->
                 </StackPanel>
-                <StackPanel Grid.Column="2" Background="WhiteSmoke">
-                    
-                </StackPanel>
-                <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Center" VerticalAlignment="Stretch"></GridSplitter>
+                <StackPanel Grid.Column="2" Background="WhiteSmoke"/>
+                <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="3" Background="{DynamicResource ProfileHighlight}"></StackPanel>
-        <StackPanel Grid.Row="4" Background="{DynamicResource HoverAccentBrush}"></StackPanel>
+        <StackPanel Grid.Row="3" Background="{DynamicResource ProfileHighlight}"/>
+        <StackPanel Grid.Row="4" Background="{DynamicResource HoverAccentBrush}"/>
     </Grid>
 </Window>
