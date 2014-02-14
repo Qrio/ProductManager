@@ -3,29 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Properties="clr-namespace:ProjectX_Proto2.Properties" x:Class="ProjectX_Proto2.ProductMan"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Product Manager " WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}">
+        Title="Product Manager " WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}" Icon="Resources/gear_32xLG.png">
     <Window.Resources>
         <BitmapImage x:Key="UserImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/user_32xLG.png"/>
         <BitmapImage x:Key="SettingsImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/gear_32xLG.png"/>
         <BitmapImage x:Key="defaultUser" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/default.jpg"/>
-        <Popup x:Key="myPopup" StaysOpen="False" Width="200" Height="100" PlacementTarget="{Binding ElementName=pnlProfile}" Placement="Bottom" PopupAnimation="Scroll">
-            <Border BorderBrush="Black" BorderThickness="1">
-                <Grid Background="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="10" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" 
-        				x:Name="PopupTxt"
-        				TextAlignment="Center" 
-        				VerticalAlignment="Center"><Run Text="I'm A Popup!!"/></TextBlock>
-                </Grid>
-            </Border>
-        </Popup>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -78,16 +60,71 @@
                 <StackPanel Grid.Column="7" Orientation="Horizontal" x:Name="pnlSettings" Style="{DynamicResource HeaderControls}"  Margin="0,0,-2,0">
                     <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
+                <ToggleButton Grid.Column="8" Grid.Row="0" Style="{DynamicResource HeaderToggleControls}" x:Name="tglProfile" Click="tglProfile_Click">
+                    <ToggleButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"/>
+                            <Border BorderThickness="1,1,4,1" BorderBrush="{DynamicResource ProfileHighlight}" Height="26" Margin="0,0,4,0">
+                                <Image Source="{DynamicResource defaultUser}" Height="24" Width="24"/>
+                            </Border>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>
                 <StackPanel Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Right" x:Name="pnlProfile" Style="{DynamicResource HeaderControls}" MouseLeftButtonUp="pnlProfile_Click">
-                    <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"/>
-                    <Border BorderThickness="1,1,4,1" BorderBrush="{DynamicResource ProfileHighlight}" Height="26" Margin="0,0,4,0">
-                        <Image Source="{DynamicResource defaultUser}" Height="24" Width="24"/>
-                    </Border>
                     
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="1" Background="{DynamicResource ProfileHighlight}"/>
+        <StackPanel Grid.Row="1" Background="{DynamicResource ProfileHighlight}" Panel.ZIndex="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Canvas Panel.ZIndex="1" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasProfile" Visibility="Collapsed">
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-315" Width="300" Canvas.Top="1">
+                        <Grid Background="{DynamicResource FieldBackgroundBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Grid.Row="1" BorderBrush="{DynamicResource ProfileHighlight}" BorderThickness="1,1,4,1" Height="120" Width="120">
+                                <Image Source="{StaticResource defaultUser}"></Image>
+                            </Border>
+                            <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
+                                    <TextBlock>Edit Profile</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                                    <TextBlock>Advanced Settings</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="2" Height="1" Background="{DynamicResource ProfileHighlight}"/>
+                                <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+                                    <TextBlock>Logout</TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                   
+                </Canvas>
+            </Grid>
+        </StackPanel>
         <StackPanel Grid.Row="2" Background="{DynamicResource WindowBackgroundBrush}" Orientation="Horizontal">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -147,7 +184,10 @@
                     </Border>
                     <!--Split the second part of the panel to show the stock information-->
                 </StackPanel>
-                <StackPanel Grid.Column="2" Background="WhiteSmoke"/>
+                <StackPanel Grid.Column="2" Background="WhiteSmoke">
+                    <!--Right hand side content area-->
+                    
+                </StackPanel>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </Grid>
         </StackPanel>

@@ -33,15 +33,38 @@ namespace ProjectX_Proto2
 
         private void pnlProfile_Click(object sender, MouseButtonEventArgs e)
         {
-            if (_MyPopup.IsOpen == true)
+
+            if (canvasProfile.Visibility == System.Windows.Visibility.Collapsed)
             {
-                _MyPopup.IsOpen = false;
+                canvasProfile.Visibility = System.Windows.Visibility.Visible;
+                pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
+            }
+            else 
+            {
+                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
+                pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
+            }
+            //if (_MyPopup.IsOpen == true)
+            //{
+            //    _MyPopup.IsOpen = false;
+            //}
+            //else
+            //{
+            //    _MyPopup.IsOpen = true;
+            //}
+            
+        }
+
+        private void tglProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (canvasProfile.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                canvasProfile.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
-                _MyPopup.IsOpen = true;
+                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
             }
-            
         }
 
     }

@@ -148,6 +148,20 @@
                 <Setter Property="Cursor" Value="Hand"></Setter>
                 <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
             </Trigger>
+            
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{x:Null}" x:Key="HeaderToggleControls">
+        <Setter Property="Background" Value="{DynamicResource WindowAccentBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
+            </Trigger>
+
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
             </Trigger>
