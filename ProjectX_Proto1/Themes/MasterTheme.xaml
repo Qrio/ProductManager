@@ -127,6 +127,58 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="FlatButtonControl">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="MinHeight" Value="23"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="Foreground" Value="{DynamicResource Header1Brush}"/>
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="15,5,5,12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="Border" CornerRadius="0" BorderThickness="4,0,0,0"
+                    BorderBrush="{DynamicResource WindowAccentBrush}" Background="Transparent">
+                        <ContentPresenter Margin="2" 
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center" 
+                                 RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="Background" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="Background" Value="{DynamicResource HoverAccentBrush}" />
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="#606060" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" 
+                          Property="Background" Value="#EEEEEE" />
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="#AAAAAA" />
+                            <Setter Property="Foreground" Value="#888888"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--Batan - End of default control definitions....-->
     <!-- SimpleButtonFocusVisual is used to show keyboard focus around a SimpleButton control -->
     <Style x:Key="SimpleButtonFocusVisual">

@@ -37,12 +37,12 @@ namespace ProjectX_Proto2
             if (canvasProfile.Visibility == System.Windows.Visibility.Collapsed)
             {
                 canvasProfile.Visibility = System.Windows.Visibility.Visible;
-                pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
+                //pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
             }
             else 
             {
                 canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
-                pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
+                //pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
             }
             //if (_MyPopup.IsOpen == true)
             //{
@@ -64,6 +64,36 @@ namespace ProjectX_Proto2
             else
             {
                 canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void btnPurchaseHistory_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Purchase History");
+        }
+
+        private void btnVendors_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnItemsPrices_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void pnlSettings_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (canvasSettings.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
+                canvasSettings.Visibility = System.Windows.Visibility.Visible;
+                //pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
+            }
+            else
+            {
+                canvasSettings.Visibility = System.Windows.Visibility.Collapsed;
+                //pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
             }
         }
 
