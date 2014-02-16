@@ -47,12 +47,7 @@
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE"/>
     <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA"/>
 
-    <!-- Used for background of ScrollViewer, TreeView, ListBox, Expander, TextBox, Tab Control -->
-    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFAAAA6B"/>
-    <SolidColorBrush x:Key="WindowAccentBrush" Color="#FF747442"/>
-    <SolidColorBrush x:Key="HoverAccentBrush" Color="#FF49491B"/>
-    <SolidColorBrush x:Key="FieldBackgroundBrush" Color="#FFECECB5"/>
-    <SolidColorBrush x:Key="ProfileHighlight" Color="#FF3A3A04"/>
+   
 
     <!-- DefaultedBorderBrush is used to show KeyBoardFocus -->
     <LinearGradientBrush x:Key="DefaultedBorderBrush" EndPoint="0,1" StartPoint="0,0">
@@ -70,11 +65,16 @@
     <!-- Style and Template pairs are used to define each control Part -->
     <!-- The Style provides default values on the control; the Template gives the elements for each control -->
     <!--Batan - Feb 08, 2014 - Following default styles are applied across all controls-->
-    
+    <!--Change these colors for each theme--> 
     <SolidColorBrush x:Key="DefaultLabelBrush" Color="#FFE2E29C"/>
     <SolidColorBrush x:Key="Header1Brush" Color="White"/>
     <SolidColorBrush x:Key="DefaultTextBrush" Color="#FF535334"/>
-
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFAAAA6B"/>
+    <SolidColorBrush x:Key="WindowAccentBrush" Color="#FF747442"/>
+    <SolidColorBrush x:Key="HoverAccentBrush" Color="#FF49491B"/>
+    <SolidColorBrush x:Key="FieldBackgroundBrush" Color="#FFECECB5"/>
+    <SolidColorBrush x:Key="ProfileHighlight" Color="#FF3A3A04"/>
+    
     <Style TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"></Setter>
     </Style>
@@ -165,7 +165,58 @@
                             <Setter TargetName="Border" 
                           Property="Background" Value="{DynamicResource HoverAccentBrush}" />
                             <Setter TargetName="Border" 
-                          Property="BorderBrush" Value="#606060" />
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" 
+                          Property="Background" Value="#EEEEEE" />
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="#AAAAAA" />
+                            <Setter Property="Foreground" Value="#888888"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}" x:Key="FlatButtonSubMenu">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="Foreground" Value="{DynamicResource ProfileHighlight}"/>
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="15,5,5,12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="Border" CornerRadius="0" BorderThickness="0,0,0,0"
+                    BorderBrush="{DynamicResource WindowAccentBrush}" Background="Transparent" Padding="4,0,0,0">
+                        <ContentPresenter Margin="2" 
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center" 
+                                 RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource HoverAccentBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource Header1Brush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" 
+                          Property="Background" Value="{DynamicResource HoverAccentBrush}" />
+                            <Setter TargetName="Border" 
+                          Property="BorderBrush" Value="{DynamicResource HoverAccentBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="Border" 
@@ -208,16 +259,97 @@
     </Style>
     <Style TargetType="{x:Type ToggleButton}" BasedOn="{x:Null}" x:Key="HeaderToggleControls">
         <Setter Property="Background" Value="{DynamicResource WindowAccentBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Cursor" Value="Hand"></Setter>
                 <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
             </Trigger>
-
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
+            </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Background" Value="{DynamicResource HoverAccentBrush}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ToggleButton" x:Key="DefaultToggleButton">
+        <Setter Property="Background" Value="{DynamicResource WindowAccentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Header1Brush}"/>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!--<ColorAnimation Duration="0:0:0.5" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF49491B"/>-->
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="BackgroundHover" Storyboard.TargetProperty="Opacity" To=".45"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <!--<ColorAnimation Duration="0:0:0:0.5" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF49491B"/>-->
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="Opacity" To=".55"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Background" Background="#FF747442">
+                            <Grid Background="{TemplateBinding Background}"  Margin="1">
+                                <Border Opacity="0"  x:Name="BackgroundAnimation" Background="#FF49491B" />                                
+                            </Grid>
+                        </Border>
+                        <ContentPresenter
+                              x:Name="contentPresenter"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"/>
+                        <Rectangle x:Name="DisabledVisualElement" RadiusX="0" RadiusY="0" Fill="#FFFFFFFF" Opacity="0" IsHitTestVisible="false" />
+                        <Rectangle x:Name="BackgroundHover" RadiusX="0" RadiusY="0" Fill="#FF49491B" Opacity="0" />
+                        <Rectangle x:Name="FocusVisualElement" RadiusX="0" RadiusY="0" Margin="1" Stroke="#FF6DBDD1" StrokeThickness="1" Opacity="0" IsHitTestVisible="false" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <!-- Simple Button - This control sets brushes on each state. Note that these brushes must be listed above since they are static resources -->
     <Style TargetType="{x:Type Button}" BasedOn="{x:Null}" x:Key="AeroButton">

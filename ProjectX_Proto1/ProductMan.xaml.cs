@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls.Primitives;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace ProjectX_Proto2
 {
@@ -19,52 +20,26 @@ namespace ProjectX_Proto2
     /// Interaction logic for ProductMan.xaml
     /// </summary>
     /// 
-    
-    
+
+
     public partial class ProductMan : Window
     {
-        private Popup _MyPopup;
 
         public ProductMan()
         {
             InitializeComponent();
-            _MyPopup = Resources["myPopup"] as Popup;
-        }
-
-        private void pnlProfile_Click(object sender, MouseButtonEventArgs e)
-        {
-
-            if (canvasProfile.Visibility == System.Windows.Visibility.Collapsed)
-            {
-                canvasProfile.Visibility = System.Windows.Visibility.Visible;
-                //pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
-            }
-            else 
-            {
-                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
-                //pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
-            }
-            //if (_MyPopup.IsOpen == true)
-            //{
-            //    _MyPopup.IsOpen = false;
-            //}
-            //else
-            //{
-            //    _MyPopup.IsOpen = true;
-            //}
-            
+            this.canvasSettings.Visibility = System.Windows.Visibility.Collapsed;
+            this.canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void tglProfile_Click(object sender, RoutedEventArgs e)
         {
-            if (canvasProfile.Visibility == System.Windows.Visibility.Collapsed)
+            if (canvasSettings.Visibility == System.Windows.Visibility.Visible)
             {
-                canvasProfile.Visibility = System.Windows.Visibility.Visible;
+                tglSettings.IsChecked = false;
+                tglSettings.RaiseEvent(new RoutedEventArgs(ToggleButton.ClickEvent));
             }
-            else
-            {
-                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
-            }
+            canvasProfile.Visibility = canvasProfile.Visibility == System.Windows.Visibility.Collapsed ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;            
         }
 
         private void btnPurchaseHistory_Click(object sender, RoutedEventArgs e)
@@ -74,28 +49,41 @@ namespace ProjectX_Proto2
 
         private void btnVendors_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Vendors");
         }
 
         private void btnItemsPrices_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Item & Prices");
         }
 
-        private void pnlSettings_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+
+        private void tglSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (canvasSettings.Visibility == System.Windows.Visibility.Collapsed)
+            if (canvasProfile.Visibility == System.Windows.Visibility.Visible)
             {
-                canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
-                canvasSettings.Visibility = System.Windows.Visibility.Visible;
-                //pnlProfile.Background = Application.Current.FindResource("HoverAccentBrush") as SolidColorBrush;
+                tglProfile.IsChecked = false;
+                tglProfile.RaiseEvent(new RoutedEventArgs(ToggleButton.ClickEvent));
             }
-            else
-            {
-                canvasSettings.Visibility = System.Windows.Visibility.Collapsed;
-                //pnlProfile.Background = Application.Current.FindResource("WindowAccentBrush") as SolidColorBrush;
-            }
+            canvasSettings.Visibility = canvasSettings.Visibility == System.Windows.Visibility.Collapsed ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
+
+        private void tglNewItems_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tglMoreProducts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tglNew_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
 
     }
 }

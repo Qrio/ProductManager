@@ -35,32 +35,52 @@
                     <!--Middle spacer, empty space... Column 4-->
                     <ColumnDefinition Width="90"/>
                     <!--New Items link... Column 5-->
+                    <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="800*"/>
-                    <!--Middle spacer.... Column 6-->
+                    <!--Middle spacer.... Column 7-->
                     <ColumnDefinition Width="30"/>
-                    <!--Settings... Column 7-->
+                    <!--Settings... Column 8-->
                     <ColumnDefinition Width="130"/>
-                    <!--Sign in space... Column 8-->
-                    <ColumnDefinition Width="15"/>
                     <!--Sign in space... Column 9-->
+                    <ColumnDefinition Width="15"/>
+                    <!--Sign in space... Column 10-->
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" x:Name="pnlTitle" Style="{DynamicResource HeaderControls}">
                     <Label Style="{DynamicResource HeaderIcons}" Content="&#xF07A;" FontSize="28"/>
                     <Label Style="{DynamicResource Header1}" Content="Purchase Manager" VerticalAlignment="Stretch"/>
                 </StackPanel>
                 <StackPanel Background="White" Grid.Column="2"/>
-                <StackPanel Grid.Column="3" VerticalAlignment="Stretch" x:Name="pnlMoreProducts"  Style="{DynamicResource HeaderControls}">
-                    <Label Grid.Column="3" Style="{DynamicResource Header1}" Content="&#xE011;" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Bottom" Margin="0,10,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="5" Orientation="Horizontal" x:Name="pnlNew"  Style="{DynamicResource HeaderControls}">
-                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF055;" FontSize="22" VerticalAlignment="Center"/>
-                    <Label Style="{DynamicResource Header1}" Content="New" VerticalAlignment="Center" FontSize="16"/>
-                </StackPanel>
-                <StackPanel Grid.Column="6" HorizontalAlignment="Stretch"/>
-                <StackPanel Grid.Column="7" Orientation="Horizontal" x:Name="pnlSettings" Style="{DynamicResource HeaderControls}"  Margin="0,0,-2,0" MouseLeftButtonUp="pnlSettings_MouseLeftButtonUp">
-                    <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center"/>
-                </StackPanel>
-                <ToggleButton Grid.Column="8" Grid.Row="0" Style="{DynamicResource HeaderToggleControls}" x:Name="tglProfile" Click="tglProfile_Click">
+                <ToggleButton Grid.Column="3" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglMoreProducts" Click="tglMoreProducts_Click" Margin="0,0,-3,0">
+                    <ToggleButton.Content>
+                        <StackPanel VerticalAlignment="Stretch" x:Name="pnlMoreProducts">
+                            <Label Style="{DynamicResource Header1}" Content="&#xE011;" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Bottom" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Grid.Column="5" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglNew" Click="tglNew_Click" HorizontalContentAlignment="Left">
+                    <ToggleButton.Content>
+                        <StackPanel Grid.Column="5" Orientation="Horizontal" x:Name="pnlNew">
+                            <Label Style="{DynamicResource HeaderIcons}" Content="&#xF055;" FontSize="22" VerticalAlignment="Center"/>
+                            <Label Style="{DynamicResource Header1}" Content="New" VerticalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Grid.Column="6" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglNewItems" Click="tglNewItems_Click" Margin="0,0,-3,0">
+                    <ToggleButton.Content>
+                        <StackPanel VerticalAlignment="Stretch" x:Name="pnlNewItems">
+                            <Label Style="{DynamicResource Header1}" Content="&#xE011;" FontFamily="Segoe UI Symbol" FontSize="14" VerticalAlignment="Bottom" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <StackPanel Grid.Column="7" HorizontalAlignment="Stretch"/>
+                <ToggleButton Grid.Column="8" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglSettings" Click="tglSettings_Click">
+                    <ToggleButton.Content>
+                        <StackPanel Orientation="Horizontal" x:Name="pnlSettings" Margin="-1,0,-2,0">
+                            <Label Style="{DynamicResource HeaderIcons}" Content="&#xF013;" FontSize="20" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>               
+                <ToggleButton Grid.Column="9" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglProfile" Click="tglProfile_Click">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Label Style="{DynamicResource Header1}" Content="Batan Bensigar" VerticalAlignment="Center" FontSize="14"/>
@@ -83,8 +103,8 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Canvas Panel.ZIndex="1" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasProfile" Visibility="Collapsed">
-                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-315" Width="300" Canvas.Top="1">
+                <Canvas Panel.ZIndex="1" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasProfile" Visibility="Visible">
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-315" Width="300" Height="142" Canvas.Top="1" x:Name="borderProfile">
                         <Grid Background="{DynamicResource FieldBackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>
@@ -101,27 +121,29 @@
                             <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,10,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
+                                    <RowDefinition Height="1"/>
                                     <RowDefinition/>
                                     <RowDefinition Height="1"/>
                                     <RowDefinition/>
-                                </Grid.RowDefinitions>
+                                </Grid.RowDefinitions>                                
                                 <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
-                                    <TextBlock>Edit Profile</TextBlock>
+                                    <Button Style="{DynamicResource FlatButtonSubMenu}" Content="Edit Profile" HorizontalContentAlignment="Left"></Button>
                                 </StackPanel>
-                                <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
-                                    <TextBlock>Advanced Settings</TextBlock>
+                                <StackPanel Grid.Column="0" Grid.Row="1" Height="1" Background="{DynamicResource ProfileHighlight}"/>
+                                <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource FlatButtonSubMenu}" Content="Advanced Settings" HorizontalContentAlignment="Left"></Button>
                                 </StackPanel>
-                                <StackPanel Grid.Column="0" Grid.Row="2" Height="1" Background="{DynamicResource ProfileHighlight}"/>
-                                <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
-                                    <TextBlock>Logout</TextBlock>
+                                <StackPanel Grid.Column="0" Grid.Row="3" Height="1" Background="{DynamicResource ProfileHighlight}"/>
+                                <StackPanel Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">
+                                    <Button Style="{DynamicResource FlatButtonSubMenu}" Content="Logout" Height="40" HorizontalContentAlignment="Left"></Button>
                                 </StackPanel>
                             </Grid>
                         </Grid>
                     </Border>
                 </Canvas>
                 <!--Theme selection dropdown from Settings menu bar button-->
-                <Canvas Panel.ZIndex="2" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasSettings" Visibility="Visible">
-                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-275" Width="131" Height="250" Canvas.Top="1">
+                <Canvas Panel.ZIndex="2" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasSettings" Visibility="Collapsed">                    
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-275" Width="131" Height="250" Canvas.Top="1" x:Name="borderSettings">
                         <Grid Background="{DynamicResource FieldBackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="5"/>
