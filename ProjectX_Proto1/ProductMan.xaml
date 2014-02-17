@@ -99,12 +99,30 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="15"/>
+                    <!--Left Spacer... Column 0-->
+                    <ColumnDefinition Width="210"/>
+                    <!--Product title... Column 1-->
+                    <ColumnDefinition Width="1"/>
+                    <!--Middle spacer, white line... Column 2-->
+                    <ColumnDefinition Width="25"/>
+                    <!--Other products... Column 3-->
+                    <ColumnDefinition Width="60"/>
+                    <!--Middle spacer, empty space... Column 4-->
+                    <ColumnDefinition Width="90"/>
+                    <!--New Items link... Column 5-->
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="800*"/>
+                    <!--Middle spacer.... Column 7-->
+                    <ColumnDefinition Width="30"/>
+                    <!--Settings... Column 8-->
+                    <ColumnDefinition Width="130"/>
+                    <!--Sign in space... Column 9-->
+                    <ColumnDefinition Width="15"/>
+                    <!--Sign in space... Column 10-->
                 </Grid.ColumnDefinitions>
-                <Canvas Panel.ZIndex="1" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasProfile" Visibility="Visible">
-                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-315" Width="300" Height="142" Canvas.Top="1" x:Name="borderProfile">
+                <Canvas Panel.ZIndex="1" HorizontalAlignment="Stretch" Grid.Column="9" x:Name="canvasProfile" Visibility="Collapsed">
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-170" Width="300" Height="142" Canvas.Top="1" x:Name="borderProfile">
                         <Grid Background="{DynamicResource FieldBackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>
@@ -135,15 +153,15 @@
                                 </StackPanel>
                                 <StackPanel Grid.Column="0" Grid.Row="3" Height="1" Background="{DynamicResource ProfileHighlight}"/>
                                 <StackPanel Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">
-                                    <Button Style="{DynamicResource FlatButtonSubMenu}" Content="Logout" Height="40" HorizontalContentAlignment="Left"></Button>
+                                    <Button Style="{DynamicResource FlatButtonSubMenu}" Content="Logout" Height="40" HorizontalContentAlignment="Left" x:Name="btnLogout" Click="btnLogout_Click"></Button>
                                 </StackPanel>
                             </Grid>
                         </Grid>
                     </Border>
                 </Canvas>
                 <!--Theme selection dropdown from Settings menu bar button-->
-                <Canvas Panel.ZIndex="2" HorizontalAlignment="Stretch" Grid.Column="2" x:Name="canvasSettings" Visibility="Collapsed">                    
-                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-275" Width="131" Height="250" Canvas.Top="1" x:Name="borderSettings">
+                <Canvas Panel.ZIndex="2" HorizontalAlignment="Stretch" Grid.Column="8" x:Name="canvasSettings" Visibility="Collapsed">                    
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-100" Width="131" Height="250" Canvas.Top="1" x:Name="borderSettings">
                         <Grid Background="{DynamicResource FieldBackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="5"/>
@@ -173,17 +191,55 @@
                             <StackPanel Grid.Column="1" Grid.Row="4" Height="30" VerticalAlignment="Top">
                                 <Border Background="#FF462D26" BorderBrush="Black" BorderThickness="1" Height="30"></Border>
                             </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="7" Height="30" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="About" Height="40" HorizontalContentAlignment="Left"></Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Canvas>
+                <Canvas Panel.ZIndex="3" HorizontalAlignment="Stretch" Grid.Column="6" x:Name="canvasNewItems" Visibility="Collapsed">
+                    <Border BorderThickness="2,0,2,2" BorderBrush="{DynamicResource WindowAccentBrush}" Canvas.Left="-133" Width="161" Height="150" Canvas.Top="1">
+                        <Grid Background="{DynamicResource FieldBackgroundBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="34"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Style="{DynamicResource HeaderIcons}" Content="&#xF14A;" Foreground="{DynamicResource HoverAccentBrush}"></Label>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="1" Height="40" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Purchase" Height="40" HorizontalContentAlignment="Left"></Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="2" Height="40" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Vendor" Height="40" HorizontalContentAlignment="Left"></Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="3" Height="40" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Items" Height="40" HorizontalContentAlignment="Left"></Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Grid.Row="4" Height="40" VerticalAlignment="Center">
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New ..." Height="40" HorizontalContentAlignment="Left"></Button>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </Canvas>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="2" Background="{DynamicResource WindowBackgroundBrush}" Orientation="Horizontal">
+        <DockPanel Grid.Row="2" Background="{DynamicResource WindowBackgroundBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" HorizontalAlignment="Stretch">
                     <Grid>
@@ -236,13 +292,42 @@
                     </Border>
                     <!--Split the second part of the panel to show the stock information-->
                 </StackPanel>
-                <StackPanel Grid.Column="2" Background="WhiteSmoke">
+                <DockPanel Grid.Column="2" Background="{DynamicResource WindowBackgroundBrush}">
                     <!--Right hand side content area-->
-                    
-                </StackPanel>
+                    <TabControl HorizontalAlignment="Stretch" TabStripPlacement="Top" VerticalAlignment="Stretch" FontFamily="Segoe UI Light" FontSize="13">
+                        <TabItem Style="{DynamicResource LockedTabItem}" Header="Purchase History">
+                            <DockPanel>
+                                <TreeView DockPanel.Dock="Left">
+                                    <TreeViewItem Header="Purchase 1"/>
+                                </TreeView>
+                                <ListView DockPanel.Dock="Right"/>
+                            </DockPanel>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
+                            <TabItem.Content>
+                                <TextBlock>Sample Text for a Vendor</TextBlock>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
+                            <TabItem.Content>
+                                <TextBlock>Sample Text for a Vendor</TextBlock>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
+                            <TabItem.Content>
+                                <TextBlock>Sample Text for a Vendor</TextBlock>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
+                            <TabItem.Content>
+                                <TextBlock>Sample Text for a Vendor</TextBlock>
+                            </TabItem.Content>
+                        </TabItem>
+                    </TabControl>
+                </DockPanel>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </Grid>
-        </StackPanel>
+        </DockPanel>
         <StackPanel Grid.Row="3" Background="{DynamicResource ProfileHighlight}"/>
         <StackPanel Grid.Row="4" Background="{DynamicResource HoverAccentBrush}"/>
     </Grid>

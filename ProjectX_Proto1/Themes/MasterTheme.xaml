@@ -74,6 +74,7 @@
     <SolidColorBrush x:Key="HoverAccentBrush" Color="#FF49491B"/>
     <SolidColorBrush x:Key="FieldBackgroundBrush" Color="#FFECECB5"/>
     <SolidColorBrush x:Key="ProfileHighlight" Color="#FF3A3A04"/>
+    <SolidColorBrush x:Key="TabHighlight" Color="#FF567F0E"/>
     
     <Style TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"></Setter>
@@ -351,6 +352,137 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type TabItem}" x:Key="DefaultTabItem">
+        <Style.Resources>
+            <Style x:Key="CloseableTabItemButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>                
+                <Setter Property="MinHeight" Value="20"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid VerticalAlignment="Top">
+                                <Label x:Name="PATH_Close" Padding="0,0,0,0" Margin="12,0,0,0" Style="{DynamicResource HeaderIcons}" FontSize="16" Content="&#xF05C;" Cursor="Hand"></Label>
+                                <!--<Border SnapsToDevicePixels="true" x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" Opacity="0" />-->
+                                <!--<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>-->
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="PATH_Close" Property="Content" Value="&#xF057;"/>
+                                    <Setter TargetName="PATH_Close" Property="Foreground" Value="#FFA5D147"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="PATH_Close" Property="Content" Value="&#xF057;"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="#ADADAD"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border Padding="4,5,6,0" Name="Border" Margin="1,2,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Background="{DynamicResource WindowAccentBrush}" BorderBrush="{DynamicResource ProfileHighlight}" BorderThickness="0,4,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" x:Name="ContentSite" Margin="2,-4,0,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path= Header}" Foreground="{DynamicResource Header1Brush}"></TextBlock>
+                            <Button Opacity="0" x:Name="CloseButton" Grid.Column="1" Style="{StaticResource CloseableTabItemButtonStyle}" Margin="2,-1,0,0" VerticalContentAlignment="Top">
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource HoverAccentBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TabHighlight}" />
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1,4,0,0" />
+                            <Setter TargetName="CloseButton" Property="Opacity" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource HoverAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type TabItem}" x:Key="LockedTabItem">
+        <Style.Resources>
+            <Style x:Key="CloseableTabItemButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="MinHeight" Value="20"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid VerticalAlignment="Top">
+                                <Label x:Name="PATH_Lock" Padding="0,0,0,0" Margin="12,0,0,0" Style="{DynamicResource HeaderIcons}" FontSize="16" Content="&#xF023;" Cursor="Arrow"></Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="PATH_Lock" Property="Foreground" Value="#FFA5D147"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="PATH_Lock" Property="Foreground" Value="#FFA5D147"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="#ADADAD"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border Padding="4,5,6,0" Name="Border" Margin="0,2,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Background="{DynamicResource WindowAccentBrush}" BorderBrush="{DynamicResource ProfileHighlight}" BorderThickness="0,4,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" x:Name="ContentSite" Margin="2,-4,0,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path= Header}" Foreground="{DynamicResource Header1Brush}"></TextBlock>
+                            <Button Grid.Column="1" Style="{StaticResource CloseableTabItemButtonStyle}" Margin="2,-1,0,0" VerticalContentAlignment="Top">
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource HoverAccentBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource TabHighlight}" />
+                            <Setter TargetName="Border" Property="BorderThickness" Value="0,4,0,0" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Simple Button - This control sets brushes on each state. Note that these brushes must be listed above since they are static resources -->
     <Style TargetType="{x:Type Button}" BasedOn="{x:Null}" x:Key="AeroButton">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
