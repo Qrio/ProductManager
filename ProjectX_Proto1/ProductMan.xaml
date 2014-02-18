@@ -305,26 +305,6 @@
                                 <ListView DockPanel.Dock="Right"/>
                             </DockPanel>
                         </TabItem>
-                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
-                            <TabItem.Content>
-                                <TextBlock>Sample Text for a Vendor</TextBlock>
-                            </TabItem.Content>
-                        </local:DynamicTab>
-                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
-                            <TabItem.Content>
-                                <TextBlock>Sample Text for a Vendor</TextBlock>
-                            </TabItem.Content>
-                        </local:DynamicTab>
-                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
-                            <TabItem.Content>
-                                <TextBlock>Sample Text for a Vendor</TextBlock>
-                            </TabItem.Content>
-                        </local:DynamicTab>
-                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
-                            <TabItem.Content>
-                                <TextBlock>Sample Text for a Vendor</TextBlock>
-                            </TabItem.Content>
-                        </local:DynamicTab>
                     </TabControl>
                 </DockPanel>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
