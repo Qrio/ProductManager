@@ -28,9 +28,12 @@ namespace ProjectX_Proto2
         public ProductMan()
         {
             InitializeComponent();
+            this.AddHandler(DynamicTab.DynamicTabEvent, new RoutedEventHandler(this.CloseTab));
             this.canvasSettings.Visibility = System.Windows.Visibility.Collapsed;
             this.canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
             this.canvasNewItems.Visibility = System.Windows.Visibility.Collapsed;
+
+            
         }
 
         private void tglProfile_Click(object sender, RoutedEventArgs e)
@@ -101,7 +104,11 @@ namespace ProjectX_Proto2
 
         private void tglNew_Click(object sender, RoutedEventArgs e)
         {
-
+            DynamicTab tabItem = new DynamicTab();
+            tabItem.Header = "New Purchase";
+            tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
+            tabItem.IsSelected = true;
+            tabWorkspace.Items.Add(tabItem);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -109,27 +116,17 @@ namespace ProjectX_Proto2
             Application.Current.Shutdown(0);
         }
 
-        public static readonly RoutedEvent CloseTabEvent = EventManager.RegisterRoutedEvent("CloseTab", RoutingStrategy.Bubble,
-                                typeof(RoutedEventHandler), typeof(TabItem));
-
-        public event RoutedEventHandler CloseTab
+        private void CloseTab(object source, RoutedEventArgs e)
         {
-            add { AddHandler(CloseTabEvent, value); }
-            remove { RemoveHandler(CloseTabEvent, value); }
+            TabItem tabItem = e.Source as TabItem;
+            if (tabItem != null)
+            {
+                TabControl tabControl = tabItem.Parent as TabControl;
+                if (tabControl != null)
+                {
+                    tabControl.Items.Remove(tabItem);
+                }
+            }
         }
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            Button closeButton = base.GetTemplateChild("PART_Close") as Button;
-            if (closeButton != null)
-                closeButton.Click += new System.Windows.RoutedEventHandler(closeButton_Click);
-        }
-
-        void closeButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            this.RaiseEvent(new RoutedEventArgs(CloseTabEvent, this));
-        }
-
     }
 }

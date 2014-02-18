@@ -1,7 +1,9 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Properties="clr-namespace:ProjectX_Proto2.Properties" x:Class="ProjectX_Proto2.ProductMan"
+        xmlns:Properties="clr-namespace:ProjectX_Proto2.Properties" 
+        x:Class="ProjectX_Proto2.ProductMan"
+        xmlns:local="clr-namespace:ProjectX_Proto2"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Product Manager " WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}" Icon="Resources/gear_32xLG.png">
     <Window.Resources>
@@ -294,7 +296,7 @@
                 </StackPanel>
                 <DockPanel Grid.Column="2" Background="{DynamicResource WindowBackgroundBrush}">
                     <!--Right hand side content area-->
-                    <TabControl HorizontalAlignment="Stretch" TabStripPlacement="Top" VerticalAlignment="Stretch" FontFamily="Segoe UI Light" FontSize="13">
+                    <TabControl Name="tabWorkspace" HorizontalAlignment="Stretch" TabStripPlacement="Top" VerticalAlignment="Stretch" FontFamily="Segoe UI Light" FontSize="13">
                         <TabItem Style="{DynamicResource LockedTabItem}" Header="Purchase History">
                             <DockPanel>
                                 <TreeView DockPanel.Dock="Left">
@@ -303,26 +305,26 @@
                                 <ListView DockPanel.Dock="Right"/>
                             </DockPanel>
                         </TabItem>
-                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
+                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
                             <TabItem.Content>
                                 <TextBlock>Sample Text for a Vendor</TextBlock>
                             </TabItem.Content>
-                        </TabItem>
-                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
+                        </local:DynamicTab>
+                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Vendor">
                             <TabItem.Content>
                                 <TextBlock>Sample Text for a Vendor</TextBlock>
                             </TabItem.Content>
-                        </TabItem>
-                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
+                        </local:DynamicTab>
+                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
                             <TabItem.Content>
                                 <TextBlock>Sample Text for a Vendor</TextBlock>
                             </TabItem.Content>
-                        </TabItem>
-                        <TabItem Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
+                        </local:DynamicTab>
+                        <local:DynamicTab Style="{DynamicResource DefaultTabItem}" Header="New Purchase">
                             <TabItem.Content>
                                 <TextBlock>Sample Text for a Vendor</TextBlock>
                             </TabItem.Content>
-                        </TabItem>
+                        </local:DynamicTab>
                     </TabControl>
                 </DockPanel>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
