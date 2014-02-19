@@ -29,11 +29,12 @@ namespace ProjectX_Proto2
         {
             InitializeComponent();
             this.AddHandler(DynamicTab.DynamicTabEvent, new RoutedEventHandler(this.CloseTab));
+            this.AddHandler(Button.ClickEvent, new RoutedEventHandler(this.OpenTab));
             this.canvasSettings.Visibility = System.Windows.Visibility.Collapsed;
             this.canvasProfile.Visibility = System.Windows.Visibility.Collapsed;
             this.canvasNewItems.Visibility = System.Windows.Visibility.Collapsed;
 
-            
+
         }
 
         private void tglProfile_Click(object sender, RoutedEventArgs e)
@@ -53,7 +54,8 @@ namespace ProjectX_Proto2
 
         private void btnPurchaseHistory_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Purchase History");
+            //MessageBox.Show("Purchase History");
+            btnPurchaseHistory.RaiseEvent(new RoutedEventArgs());
         }
 
         private void btnVendors_Click(object sender, RoutedEventArgs e)
@@ -104,11 +106,12 @@ namespace ProjectX_Proto2
 
         private void tglNew_Click(object sender, RoutedEventArgs e)
         {
-            DynamicTab tabItem = new DynamicTab();
-            tabItem.Header = "New Purchase";
-            tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
-            tabItem.IsSelected = true;
-            tabWorkspace.Items.Add(tabItem);
+            //tglNew.RaiseEvent(new RoutedEventArgs());
+            //DynamicTab tabItem = new DynamicTab();
+            //tabItem.Header = "New Purchase";
+            //tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
+            //tabItem.IsSelected = true;
+            //tabWorkspace.Items.Add(tabItem);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -127,6 +130,47 @@ namespace ProjectX_Proto2
                     tabControl.Items.Remove(tabItem);
                 }
             }
+        }
+        public void OpenTab(object source, RoutedEventArgs e)
+        {
+            FrameworkElement feSource = e.OriginalSource as FrameworkElement;
+
+            if(feSource !=null)
+            {
+                DynamicTab tabItem = new DynamicTab();
+                switch (feSource.Name)
+                {
+                    case "btnPurchaseHistory"://Purchase History Button click
+                        tabItem.Header = "Purchase History";
+                        tabItem.SetResourceReference(Control.StyleProperty, "LockedTabItem");
+                        break;
+                    case "btnVendors"://Vendors Button click
+                        tabItem.Header = "Vendors";
+                        tabItem.SetResourceReference(Control.StyleProperty, "LockedTabItem");
+                        break;
+                    case "btnItemsPrices"://Items & prices Button click
+                        tabItem.Header = "Items & Prices";
+                        tabItem.SetResourceReference(Control.StyleProperty, "LockedTabItem");
+                        break;
+                    case "btnNewPurchase"://New Purchase link click
+                        tabItem.Header = "New Purchase";
+                        tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
+                        break;
+                    case "btnNewVendor"://New Vendor link click
+                        tabItem.Header = "New Vendor";
+                        tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
+                        break;
+                    case "tglNew":
+                        tabItem.Header = "New Purchase";
+                        tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
+                        break;
+                    default:
+                        break;
+                }
+                e.Handled = true;
+                tabItem.IsSelected = true;
+                tabWorkspace.Items.Add(tabItem);
+            }   
         }
     }
 }

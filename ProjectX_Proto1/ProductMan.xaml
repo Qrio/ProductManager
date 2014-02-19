@@ -59,7 +59,7 @@
                         </StackPanel>
                     </ToggleButton.Content>
                 </ToggleButton>
-                <ToggleButton Grid.Column="5" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglNew" Click="tglNew_Click" HorizontalContentAlignment="Left">
+                <ToggleButton Grid.Column="5" Grid.Row="0" Style="{DynamicResource DefaultToggleButton}" x:Name="tglNew" Click="OpenTab" HorizontalContentAlignment="Left">
                     <ToggleButton.Content>
                         <StackPanel Grid.Column="5" Orientation="Horizontal" x:Name="pnlNew">
                             <Label Style="{DynamicResource HeaderIcons}" Content="&#xF055;" FontSize="22" VerticalAlignment="Center"/>
@@ -220,13 +220,13 @@
                                 <Label Style="{DynamicResource HeaderIcons}" Content="&#xF14A;" Foreground="{DynamicResource HoverAccentBrush}"></Label>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="1" Height="40" VerticalAlignment="Center">
-                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Purchase" Height="40" HorizontalContentAlignment="Left"></Button>
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Purchase" Height="40" HorizontalContentAlignment="Left" Name="btnNewPurchase" Click="OpenTab"></Button>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="2" Height="40" VerticalAlignment="Center">
-                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Vendor" Height="40" HorizontalContentAlignment="Left"></Button>
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Vendor" Height="40" HorizontalContentAlignment="Left" Name="btnNewVendor" Click="OpenTab"></Button>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="3" Height="40" VerticalAlignment="Center">
-                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Items" Height="40" HorizontalContentAlignment="Left"></Button>
+                                <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New Items" Height="40" HorizontalContentAlignment="Left" Name="btnNewItems"></Button>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="4" Height="40" VerticalAlignment="Center">
                                 <Button Style="{DynamicResource FlatButtonSubMenu}" Content="New ..." Height="40" HorizontalContentAlignment="Left"></Button>
@@ -255,9 +255,9 @@
                         </Grid.RowDefinitions>
                     </Grid>
                     <TextBlock Width="225" Grid.Row="0"/>
-                    <Button Style="{DynamicResource FlatButtonControl}" Content="Purchase History" Grid.Row="1" Height="40" x:Name="btnPurchaseHistory" Click="btnPurchaseHistory_Click"/>
-                    <Button Style="{DynamicResource FlatButtonControl}" Content="Vendors" Grid.Row="2" Height="40" x:Name="btnVendors" Click="btnVendors_Click"/>
-                    <Button Style="{DynamicResource FlatButtonControl}" Content="Items &amp; Prices" Grid.Row="3" Height="40" x:Name="btnItemsPrices" Click="btnItemsPrices_Click"/>
+                    <Button Style="{DynamicResource FlatButtonControl}" Content="Purchase History" Grid.Row="1" Height="40" x:Name="btnPurchaseHistory" Click="OpenTab"/>
+                    <Button Style="{DynamicResource FlatButtonControl}" Content="Vendors" Grid.Row="2" Height="40" x:Name="btnVendors" Click="OpenTab"/>
+                    <Button Style="{DynamicResource FlatButtonControl}" Content="Items &amp; Prices" Grid.Row="3" Height="40" x:Name="btnItemsPrices" Click="OpenTab"/>
                     <TextBlock Width="223" Grid.Row="4"/>
                     <Border Grid.Row="5" BorderThickness="1,4,1,1" BorderBrush="{DynamicResource ProfileHighlight}" Padding="1,1,1,1" Margin="2,2,2,2">
                         <StackPanel Orientation="Vertical">
@@ -296,16 +296,16 @@
                 </StackPanel>
                 <DockPanel Grid.Column="2" Background="{DynamicResource WindowBackgroundBrush}">
                     <!--Right hand side content area-->
-                    <TabControl Name="tabWorkspace" HorizontalAlignment="Stretch" TabStripPlacement="Top" VerticalAlignment="Stretch" FontFamily="Segoe UI Light" FontSize="13">
-                        <TabItem Style="{DynamicResource LockedTabItem}" Header="Purchase History">
+                    <local:ScrollTabControl x:Name="tabWorkspace" HorizontalAlignment="Stretch" TabStripPlacement="Top" VerticalAlignment="Stretch" FontFamily="Segoe UI Light" FontSize="13">
+                        <local:DynamicTab Style="{DynamicResource LockedTabItem}" Header="Purchase History">
                             <DockPanel>
                                 <TreeView DockPanel.Dock="Left">
                                     <TreeViewItem Header="Purchase 1"/>
                                 </TreeView>
                                 <ListView DockPanel.Dock="Right"/>
                             </DockPanel>
-                        </TabItem>
-                    </TabControl>
+                        </local:DynamicTab>
+                    </local:ScrollTabControl>
                 </DockPanel>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </Grid>
