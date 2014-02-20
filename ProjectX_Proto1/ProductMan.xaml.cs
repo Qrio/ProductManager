@@ -134,6 +134,7 @@ namespace ProjectX_Proto2
         public void OpenTab(object source, RoutedEventArgs e)
         {
             FrameworkElement feSource = e.OriginalSource as FrameworkElement;
+            bool ShouldHandle = true;
 
             if(feSource !=null)
             {
@@ -164,12 +165,15 @@ namespace ProjectX_Proto2
                         tabItem.Header = "New Purchase";
                         tabItem.SetResourceReference(Control.StyleProperty, "DefaultTabItem");
                         break;
-                    default:
+                    default: ShouldHandle = false;
                         break;
                 }
                 e.Handled = true;
-                tabItem.IsSelected = true;
-                tabWorkspace.Items.Add(tabItem);
+                if (ShouldHandle)
+                {
+                    tabItem.IsSelected = true;
+                    tabWorkspace.Items.Add(tabItem);
+                }                
             }   
         }
     }
