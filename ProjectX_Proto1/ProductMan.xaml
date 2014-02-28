@@ -5,7 +5,7 @@
         x:Class="ProjectX_Proto2.ProductMan"
         xmlns:local="clr-namespace:ProjectX_Proto2"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Product Manager " WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}" Icon="Resources/gear_32xLG.png">
+        Title="Product Manager v1.0.0.1" WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip" Background="{DynamicResource WindowBackgroundBrush}" Icon="Resources/gear_32xLG.png">
     <Window.Resources>
         <BitmapImage x:Key="UserImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/user_32xLG.png"/>
         <BitmapImage x:Key="SettingsImage" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources/gear_32xLG.png"/>
